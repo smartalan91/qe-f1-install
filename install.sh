@@ -106,7 +106,8 @@ stage_preflight() {
   have curl || have wget || die "curl or wget required"
 
   mkdir -p "$BUILD_DIR" "$LOG_DIR" "$CACHE_DIR/downloads" || die "cannot create $BUILD_DIR / $CACHE_DIR"
-  mkdir -p "$(dirname "$PREFIX")" && [[ -w "$(dirname "$PREFIX")" ]] || die "cannot write to $(dirname "$PREFIX")"
+  mkdir -p "$(dirname "$PREFIX")"
+  [[ -w "$(dirname "$PREFIX")" ]] || die "cannot write to $(dirname "$PREFIX")"
   local free_kb; free_kb=$(df -Pk "$BUILD_ROOT" | awk 'NR==2{print $4}')
   (( free_kb > 4*1024*1024 )) || die "need at least 4 GB free in $BUILD_ROOT (have $((free_kb/1024)) MB)"
 

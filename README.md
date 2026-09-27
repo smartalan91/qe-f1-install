@@ -149,7 +149,7 @@ What has actually been run on `ilgn01` (Forerunner 1 login node), 2026-09-27:
 
 | Check | Result |
 |---|---|
-| Fresh install, `intel` toolchain, defaults | 6 min 20 s end to end (download 3 s, submodules 12 s, configure 9 s, build 366 s with 16 jobs, install 3 s) |
+| Fresh install, `intel` toolchain, defaults, empty cache | 6 min 36 s end to end (download 3 s, submodules 12 s, configure 8 s, build 363 s with 16 jobs, install 3 s, smoke test 1 s) |
 | Executables | 106 `*.x` in `bin/` (pw, ph, cp, neb, pp, projwfc, epw, wannier90, …) |
 | `ldd pw.x` after `source env.sh` | 0 unresolved libraries |
 | Smoke test, login node, 4 and 8 MPI ranks | total energy −15.79449454 Ry vs reference −15.79449593 Ry (Δ = 1.4 × 10⁻⁶ Ry) |

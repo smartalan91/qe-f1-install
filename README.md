@@ -1,5 +1,7 @@
 # qe-f1-install
 
+[![lint](https://github.com/smartalan91/qe-f1-install/actions/workflows/lint.yml/badge.svg)](https://github.com/smartalan91/qe-f1-install/actions/workflows/lint.yml)
+
 Reproducible, one-command source build of **Quantum ESPRESSO 7.6** for the NCHC
 **Forerunner 1 (創進一號)** supercomputer. No containers, no Spack — just the site's
 Lmod modules plus upstream sources pinned by version and checksum.
@@ -15,7 +17,7 @@ Run it as any user, from any directory, on a Forerunner 1 login node (`f1-ilgn01
 About 10 minutes later you get:
 
 ```
-[12:34:56] ok  Quantum ESPRESSO 7.6 installed in /home/<you>/opt/qe/7.6-intel  (57 executables, 9 min 41 s)
+[12:34:56] ok  Quantum ESPRESSO 7.6 installed in /home/<you>/opt/qe/7.6-intel  (106 executables, 6 min 36 s)
 
   Use it:
     source /home/<you>/opt/qe/7.6-intel/env.sh                 # or:

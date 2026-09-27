@@ -1,0 +1,24 @@
+name: lint
+on:
+  push:
+  pull_request:
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: bash -n (syntax)
+        run: |
+          for f in install.sh lib/*.sh tests/smoke.sh; do bash -n "$f"; done
+      - name: shellcheck
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q shellcheck
+          shellcheck -x -s bash install.sh lib/common.sh lib/toolchain_intel.sh lib/toolchain_gnu.sh tests/smoke.sh
+      - name: versions.lock is plain KEY=VALUE
+        run: |
+          grep -vE '^(#|$|[A-Za-z_][A-Za-z0-9_]*=)' versions.lock && exit 1 || true
+          bash -c 'set -eu; source versions.lock; test -n "$QE_TARBALL_SHA256"'
+      - name: pseudopotential checksum matches versions.lock
+        run: |
+          source versions.lock
+          echo "$SMOKE_PSEUDO_SHA256  tests/smoke/$SMOKE_PSEUDO_FILE" | sha256sum -c -

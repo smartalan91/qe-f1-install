@@ -12,7 +12,7 @@ info()  { printf '%s[%s] ==> %s%s\n' "$_c_info" "$(_ts)" "$*" "$_c_off" >&2; }
 ok()    { printf '%s[%s] ok  %s%s\n' "$_c_ok"   "$(_ts)" "$*" "$_c_off" >&2; }
 warn()  { printf '%s[%s] WARN %s%s\n' "$_c_warn" "$(_ts)" "$*" "$_c_off" >&2; }
 die()   { printf '%s[%s] ERROR %s%s\n' "$_c_err" "$(_ts)" "$*" "$_c_off" >&2; exit 1; }
-verbose() { [[ "${VERBOSE:-0}" == 1 ]] && printf '        %s\n' "$*" >&2 || true; }
+verbose() { if [[ "${VERBOSE:-0}" == 1 ]]; then printf '        %s\n' "$*" >&2; fi; }
 
 # Print the tail of a log when a stage fails, so the user never has to hunt for it.
 on_error() {
@@ -80,7 +80,7 @@ init_modules() {
     local f
     for f in /etc/profile.d/modules.sh /etc/profile.d/00-modulepath.sh /usr/share/lmod/lmod/init/bash; do
       # shellcheck disable=SC1090
-      [[ -r "$f" ]] && source "$f" || true
+      if [[ -r "$f" ]]; then source "$f"; fi
     done
   fi
   LMOD_CMD=${LMOD_CMD:-/usr/share/lmod/lmod/libexec/lmod}

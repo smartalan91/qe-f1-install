@@ -241,7 +241,7 @@ stage_postinstall() {
 ' ' ' | sed 's/ *$//')",
   "openmp": "$OPENMP",
   "cmake_version": "$(cmake --version | awk 'NR==1{print $3}')",
-  "cmake_command": "$(sed 's/"/\\"/g' "$LOG_DIR/cmake-command.txt" | tr -d '\n')",
+  "cmake_command": "$(sed 's/\/\\/g; s/"/\\"/g' "$LOG_DIR/cmake-command.txt" | tr -d '\n')",
   "host": "$(hostname -f 2>/dev/null || hostname)",
   "os": "$(sed 's/"//g' /etc/redhat-release 2>/dev/null || uname -sr)",
   "built_by": "$USER",

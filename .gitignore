@@ -1,0 +1,5 @@
+# scratch that must never be committed
+*.log
+*.part
+build/
+/tmp/

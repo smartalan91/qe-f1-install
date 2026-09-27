@@ -1,0 +1,30 @@
+# versions.lock — every external input of the build, pinned.
+# Sourced by install.sh as shell variables. Change a pin here, never in the scripts.
+
+# ---- Quantum ESPRESSO ------------------------------------------------------
+QE_VERSION=7.6
+QE_TARBALL_URL=https://gitlab.com/QEF/q-e/-/archive/qe-7.6/q-e-qe-7.6.tar.gz
+QE_TARBALL_SHA256=945c8f16ab330c8f0b30f4de1a9a088b85038476fcd819394e641f4d2d8b7d51
+QE_TARBALL_TOPDIR=q-e-qe-7.6
+
+# Git submodules that a CPU-only build actually compiles. The release tarball
+# ships them as empty directories; we fetch exactly the commits recorded in
+# external/submodule_commit_hash_records of that tarball (cross-checked at run time).
+QE_SUBMODULES="wannier90 mbd devxlib"
+QE_SUBMODULE_wannier90=1d6b187374a2d50b509e5e79e2cab01a79ff7ce1
+QE_SUBMODULE_mbd=89a3cc199c0a200c9f0f688c3229ef6b9a8d63bd
+QE_SUBMODULE_devxlib=a6b89ef77b1ceda48e967921f1f5488d2df9226d
+
+# ---- Forerunner 1 (創進一號) site modules -----------------------------------
+# Intel oneAPI 2024.0: ifx 2024.0.2 / ifort 2021.11, Intel MPI 2021.11, MKL 2024.0
+F1_INTEL_MODULE=intel/2024_01_46
+# GNU alternative (gcc 11.2.0 + Open MPI 5.0.2, Lmod hierarchy: gcc first)
+F1_GCC_MODULE=gcc/11.2.0
+F1_OPENMPI_MODULE=openmpi/5.0.2
+
+# ---- Post-install smoke test (2-atom Si, QE test-suite pw_scf/scf.in) ------
+SMOKE_PSEUDO_FILE=Si.pz-vbc.UPF
+SMOKE_PSEUDO_SHA256=e8d933754cd51c6bb4b2a809151f89e0647e53d878bab88d26e1b5a5d68d5217
+# Reference from test-suite/pw_scf/benchmark.out.git.inp=scf.in of the same release
+SMOKE_REF_ENERGY_RY=-15.79449593
+SMOKE_TOL_RY=1.0e-4
